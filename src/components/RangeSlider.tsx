@@ -12,13 +12,9 @@ interface RangeSliderProps {
 }
 
 export default function RangeSlider({label, min, max, value, format, onChange}: RangeSliderProps) {
-  const span = max - min || 1;
-  const clamp = (n: number) => Math.min(max, Math.max(min, n))
-  const low = clamp(value[0]);
-  const high = clamp(value[1]);
-  const lowPct = ((low - min) / span) * 100;
-  const highPct = ((high - min) / span) * 100;
-  const midpoint = (min + max) / 2;
+  const clamp = (n: number) => {
+    return Math.min(max, Math.max(min, n));
+  }
 
   function setLow(next: number) {
     onChange([Math.min(clamp(next), high), high]);
@@ -27,6 +23,16 @@ export default function RangeSlider({label, min, max, value, format, onChange}: 
   function setHigh(next: number) {
     onChange([low, Math.max(clamp(next), low)]);
   }
+
+  const span = max - min || 1;
+
+  const low = clamp(value[0]);
+  const high = clamp(value[1]);
+
+  const lowPct = ((low - min) / span) * 100;
+  const highPct = ((high - min) / span) * 100;
+
+  const midpoint = (min + max) / 2;
 
   return (
     <div className={styles.slider}>
