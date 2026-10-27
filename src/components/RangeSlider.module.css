@@ -1,0 +1,94 @@
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sliderhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+}
+
+.sliderlabel {
+  color: #f1f1f1;
+  font-weight: 500;
+}
+
+.slidervalue {
+  color: #aaaaaa;
+}
+
+.trackwrap {
+  position: relative;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0.25rem;
+  border-radius: 0.125rem;
+  background: #303030;
+}
+
+.fill {
+  position: absolute;
+  height: 0.25rem;
+  border-radius: 0.125rem;
+  background: #3ea6ff;
+}
+
+.rangeinput {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.25rem;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rangeinput:focus {
+  outline: none;
+}
+
+.rangeinput::-webkit-slider-runnable-track {
+  height: 1.25rem;
+  background: transparent;
+}
+
+.rangeinput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-top: 0.1875rem;
+  border-radius: 50%;
+  background: #f1f1f1;
+  cursor: pointer;
+  border: none;
+}
+
+.rangeinput::-moz-range-track {
+  height: 1.25rem;
+  background: transparent;
+}
+
+.rangeinput::-moz-range-thumb {
+  pointer-events: auto;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: #f1f1f1;
+  cursor: pointer;
+  border: none;
+}
