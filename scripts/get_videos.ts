@@ -5,10 +5,19 @@ import path from "path";
 
 const PLAYLIST_URL = "https://www.youtube.com/playlist?list=PLk4cmie-EXn-8DKpwUk6sxKxpH4PUbybn";
 const OUTPUT_PATH = path.resolve("./public/videos.json");
+const DEFAULT_YTDLP_PATH = "./binaries/yt-dlp.exe";
 const CONCURRENCY = 8;
 
+const ytDlpPath = path.resolve(process.argv[2] ?? DEFAULT_YTDLP_PATH);
+
+if (!fs.existsSync(ytDlpPath)) {
+  console.error(`yt-dlp binary not found at: ${ytDlpPath}`);
+  console.error("Pass the path as the first argument, e.g. npm run data -- ./binaries/yt-dlp.exe");
+  process.exit(1);
+}
+
 const ytdlp = new YtDlp({
-  binaryPath: path.resolve("./binaries/yt-dlp.exe")
+  binaryPath: ytDlpPath
 });
 
 interface Thumbnail {
