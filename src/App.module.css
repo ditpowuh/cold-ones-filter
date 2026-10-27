@@ -9,18 +9,28 @@
   top: 0;
   z-index: 20;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  height: 3.5rem;
+  gap: 0.125rem;
+  height: 4.5rem;
   padding: 0 1.5rem;
   background: #0f0f0f;
   border-bottom: 1px solid #303030;
 }
 
+.headertitle {
+  font-weight: bold;
+}
+
+.headermeta {
+  color: #aaaaaa;
+  font-size: 0.75rem;
+}
+
 .stickybar {
   position: sticky;
-  top: 3.5rem;
+  top: 4.5rem;
   z-index: 10;
   background: #0f0f0f;
   border-bottom: 1px solid #303030;

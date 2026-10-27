@@ -6,11 +6,13 @@ import FilterBar from "@/components/FilterBar";
 import VideoCard from "@/components/VideoCard";
 
 import {DEFAULT_FILTERS} from "@/lib/filter";
+import {formatRelativeTime, formatTimestamp} from "@/lib/format";
 
 import type {FilterBounds, FilterState, Video, VideosPayload} from "@/types";
 
 export default function App() {
   const [videos, setVideos] = useState<Video[] | null>(null);
+  const [fetchedAt, setFetchedAt] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
 
@@ -140,6 +142,7 @@ export default function App() {
     }).then((data) => {
       if (!cancelled) {
         setVideos(data.videos);
+        setFetchedAt(data.fetchedAt);
       }
     }).catch((error: unknown) => {
       if (!cancelled) {
@@ -156,7 +159,10 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <div className={styles.app}>
         <header className={styles.header}>
-          <div>Every Cold Ones Video That's Not A Podcast Episode</div>
+          <div className={styles.headertitle}>Every Cold Ones Video That's Not A Podcast Episode</div>
+          {fetchedAt && (
+            <div className={styles.headermeta} title={formatTimestamp(fetchedAt)}>{`List last updated ${formatRelativeTime(fetchedAt)}`}</div>
+          )}
         </header>
         {bounds && (
           <div className={styles.stickybar}>
@@ -167,7 +173,7 @@ export default function App() {
         )}
         <main className={styles.main}>
           {error && (
-            <p className={styles.message}>Failed to load videos: {error}</p>
+            <p className={styles.message}>{`Failed to load videos: ${error}`}</p>
           )}
           {(!error && !videos) && (
             <p className={styles.message}>Loading...</p>
